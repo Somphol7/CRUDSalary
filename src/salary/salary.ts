@@ -26,7 +26,7 @@ const salarySchema = z.object({
 });
 
 
-// [R] READ ALL: ดึงข้อมูลทั้งหมดจาก Array
+// [R] READ 
 app.get('/', (c) => {
   return c.json({ 
     success: true, 
@@ -35,9 +35,9 @@ app.get('/', (c) => {
   });
 });
 
-// [R] READ ONE: ดึงข้อมูลตาม ID
+// [R] READ 
 app.get('/:id', (c) => {
-  const id = Number(c.req.param('id')); // แปลง ID จาก URL เป็นตัวเลข
+  const id = Number(c.req.param('id')); 
   const salary = salaries.find((s) => s.SalaryID === id);
 
   if (!salary) {
@@ -51,7 +51,7 @@ app.post('/', zValidator('json', salarySchema), (c) => {
   const data = c.req.valid('json');
 
   const newSalary: Salary = {
-    SalaryID: nextId++, // กำหนด ID และบวกเพิ่มรอรอบถัดไป
+    SalaryID: nextId++, 
     Amount: data.Amount,
     PayDate: data.PayDate,
     Bonus: data.Bonus,
